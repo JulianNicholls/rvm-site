@@ -21,16 +21,17 @@ If you want to perform a multi-user installation then you will need to:
 2. `install-rvm.sh`:
 
         #!/usr/bin/env bash
-        gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+
+        gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
         curl -sSL https://get.rvm.io | bash -s $1
 
-This will automatically install RVM (update if already installed).
+This will automatically install RVM (update if already installed). In case you encounter an issues with importing gpg keys, check [security](/rvm/security).
 
 3. `install-ruby.sh`:
 
         #!/usr/bin/env bash
 
-        source $HOME/.rvm/scripts/rvm
+        source $HOME/.rvm/scripts/rvm || source /etc/profile.d/rvm.sh
 
         rvm use --default --install $1
 
@@ -49,4 +50,3 @@ Optionally, it can install gems if specified after the version of Ruby.
 
 - [Vagrant](http://vagrantup.com/)
 - [Vagrantbox.es](http://www.vagrantbox.es/)
-- [Atlas](https://atlas.hashicorp.com/boxes/search)

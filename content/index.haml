@@ -17,37 +17,33 @@ title: RVM Ruby Version Manager - Documentation
 
 %ul.square
   %li
-    Install RVM:
-    = sh_cmd "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
-    = sh_cmd "\\curl -sSL https://get.rvm.io | bash -s stable"
-    For all in one installation append
-    %code --rails
-    or
-    %code --ruby
-    or
-    %code --ruby=1.9.3
-  %li
-    more
+    Install GPG keys:
+    = sh_cmd "gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
+    In case you encounter an issues or want to know more, check
     %a{:href => "/rvm/security"}
-      secure installation
+      security
   %li
-    for more details visit the
-    %a{:href => "/rvm/install/"}
+    Install RVM:
+    = sh_cmd "\\curl -sSL https://get.rvm.io | bash -s stable"
+  %li
+    For installing RVM with default Ruby and Rails in one command, run:
+    = sh_cmd "\\curl -sSL https://get.rvm.io | bash -s stable --rails"
+  %li
+    For more details and troubleshooting visit the
+    %a{:href => "/rvm/install"}
       installation documentation,
   %li
     and read about the new
-    %a{:href => "/rvm/autolibs/"}
+    %a{:href => "/rvm/autolibs"}
       autolib features
   %li
     watch the most accurate (but not official)
     %a{:href => "https://www.youtube.com/watch?v=cQVb7fHFjSM", :target=>"_blank"}
       rvm screencast
-    ,
   %li
     read the most accurate (but not official)
     %a{:href => "http://cheat.errtheblog.com/s/rvm", :target=>"_blank"}
       rvm cheat sheet
-    ,
   %li
     starting with Rails? watch the
     %a{:href => "http://railscasts.com/episodes/310-getting-started-with-rails", :target=>"_blank"}
@@ -56,21 +52,15 @@ title: RVM Ruby Version Manager - Documentation
 %hr
 %h2 Community Maintained Project
 %p
-  RVM is maintained by the community through pull requests sent to the project
-  repository which is located on github at
-  %a{:href => "https://github.com/rvm/rvm"}
-    https://github.com/rvm/rvm
-
-%hr
-%h2 Community Supported Project
-%p
-  RVM is supported by the community via either the (google group)
-  %a{:href => 'http://groups.google.com/group/rubyversionmanager/'}
-    Mailing List
-
-  or more real time help via gracious users in the the RVM IRC channel
-  %a{ :href => "http://webchat.freenode.net/?channels=rvm" }
-    \#rvm on irc.freenode.net
+  RVM is maintained and supported by the community via issue trackers and pull requests:
+  %ul
+    %li
+      %a{:href => "https://github.com/rvm"}
+        on each project in RVM Github organization,
+    %li
+      especially
+      %a{:href => "https://github.com/rvm/rvm/issues"}
+        RVM project issues tracker.
 
 %h2 Production
 
@@ -80,7 +70,7 @@ title: RVM Ruby Version Manager - Documentation
   application. Having a precise set of gems also avoids the issue of version conflicts between
   projects, which can cause difficult-to-trace errors and hours of hair loss. With RVM, NO OTHER
   GEMS than those required are installed. This makes working with multiple complex applications, where
-  each has a long list of gem dependencies, much more efficient. RVM let you easily test gem upgrades,
+  each has a long list of gem dependencies, much more efficient. RVM lets you easily test gem upgrades,
   by switching to a new clean set of gems to test with, while leaving your original set intact.
   It is flexible enough to even let you maintain a set of gems per environment, or per development
   branch, or even per individual developer's taste!

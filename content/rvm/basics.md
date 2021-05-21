@@ -7,18 +7,24 @@ The Basics of RVM
 
 Wondering why you should [use RVM?](/rvm/) For a start, not only does RVM make installing multiple ruby interpreters / runtimes easy and consistent, it provides features such as gemsets that aren't typically supported out of the box on most ruby installs.
 
-RVM also lets you use different rubies in a manner that wont mess with your existing ruby install (unless you tell it to) as well as letting you run multiple different rubies in seperate terminals concurrently!
+RVM also lets you use different rubies in a manner that won't mess with your existing ruby install (unless you tell it to) as well as letting you run multiple different rubies in separate terminals concurrently!
 
 ### Getting started
 
 First, you must ensure that you [install RVM](/rvm/install/).
 
-### Post Install Configuration
+### Post install configuration
 
 When you log in either via ssh or the local shell account RVM will be loaded as a function. In case of problems use one of following links as reference for configuring your terminal:
 
-* [Gnome Terminal integration](/integration/gnome-terminal/)
-* [LXTerminal integration](/integration/lxterminal/)
+<!-- TODO: move following pages from /integration to subsection of /install -->
+
+* [Gnome terminal](/integration/gnome-terminal)
+* [Konsole](/integration/konsole/)
+* [LXTerminal](/integration/lxterminal/)
+* [Ubuntu on Windows](/integration/ubuntu-on-windows)
+* [XTerm](/integration/xterm/)
+* [Zsh + iTerm](/integration/zsh/#zsh-iterm)
 * [Screen Workflow](/workflow/screen/)
 
 For non-interactive shells RVM will be added to PATH only, not loaded. This means using rubies is not possible in this mode, but there are simple methods to load ruby:
@@ -36,6 +42,18 @@ A note about the .bash_profile warning. In a few linux distributions, the defaul
 The condition `[ -z "$PS1" ]` is true if the string "$PS1" has zero length (a non-interactive shell). rvm needs to load for both interactive and non-interactive shells which is why it strongly is recommended to alter this file.
 
 First ensure that the previous step was successful and that rvm is loaded correctly. To do this, and verify that RVM is loaded *as a shell function*, run: `type rvm | head -1`
+
+### Automatic dependencies installation
+
+When installing rubies, RVM might need to use `sudo` to install dependencies. Make sure that user, who calls RVM commands, especially `rvm install`, have `sudo` rights. 
+
+If you want to be able to run RVM commands by the user who does not have `sudo` rights, you would need to turn off automatic dependency installation:
+
+    rvm autolibs disable
+    
+It would mean though, that you have to manage dependencies manually.
+
+### Installing rubies
 
 Assuming this shows "rvm is a function", you're good to go. As an example, to install and use Ruby 2.1.1 you may do:
 
@@ -75,7 +93,7 @@ contain numbers. This also applies when setting a default Ruby. Below is an exam
     # MRI Ruby 2.1.1, and sets it as default.
     $ rvm --default use 2.1.1
 
-**NOTE:** If you use *just* the Major.Minor version numbers, RVM checks for, and uses, what is the most current patchlevel in its $rvm_path/config/db for that Major.Minor version. For example, if you only have 2.0.0-p451 installed, and 2.0.0-p481 is the lastest, RVM will attempt to download, install, and set 2.0.0-p481 as your default 2.0.0 for you. This behaviour may, or may not, be what you want. If its not, then be sure to include the patch level when you specify which Ruby RVM should use when setting a default. RVM updates the known list ($rvm_path/config/db and $rvm_path/config/known) everytime you update RVM, so the 'current' version of a Major.Minor (e.g. 2.1.2 at the time of writing) can change on you. RVM does not go by what you have installed for this reason. It goes by what is maintained in those two files.
+**NOTE:** If you use *just* the Major.Minor version numbers, RVM checks for, and uses, what is the most current patchlevel in its $rvm_path/config/db for that Major.Minor version. For example, if you only have 2.0.0-p451 installed, and 2.0.0-p481 is the latest, RVM will attempt to download, install, and set 2.0.0-p481 as your default 2.0.0 for you. This behaviour may, or may not, be what you want. If its not, then be sure to include the patch level when you specify which Ruby RVM should use when setting a default. RVM updates the known list ($rvm_path/config/db and $rvm_path/config/known) every time you update RVM, so the 'current' version of a Major.Minor (e.g. 2.1.2 at the time of writing) can change on you. RVM does not go by what you have installed for this reason. It goes by what is maintained in those two files.
 
 **NOTE:** Ruby switched to a Semantic Versioning scheme as of Ruby 2.1.1, which might affect your use of rvm to manage it. [Ruby Semantic Versioning](https://www.ruby-lang.org/en/news/2013/12/21/semantic-versioning-after-2-1-0/)
 
@@ -91,7 +109,7 @@ contain numbers. This also applies when setting a default Ruby. Below is an exam
 
 **We can not stress this enough! RVM does not control the system Ruby or its gems. Only Rubies and gems installed by RVM are under it's control!**
 
-### Where To Now?
+### What's next?
 
 For further explanation, look around the rest of the site. In particular, make sure you check out the workflow [examples.](/workflow/examples/)
 

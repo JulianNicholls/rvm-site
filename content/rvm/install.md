@@ -4,13 +4,25 @@ title: Installing RVM
 
 # Installing RVM
 
-## Quick (guided) Install
+RVM supports most UNIX like systems and Windows (with [Cygwin](https://cygwin.com) or [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about)). The basic requirements are `bash`, `curl`, `gpg2` and overall GNU version of tools - but RVM tries to autodetect it and install anything that is needed.
 
-Before any other step install [mpapis](/authors/mpapis/) [public key](https://keybase.io/mpapis) (might need `gpg2`) (see [security](/rvm/security/))
+## Install GPG keys
 
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+As a first step install GPG keys used to verify installation package:
 
-**Unless doing guided install you should read all sub-sections under the [RVM Section](/rvm/).**
+    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+In case you encounter an issues check [security](/rvm/security)
+
+## Basic install
+
+### Ubuntu
+
+RVM have dedicated Ubuntu package, so please follow instructions posted here: [https://github.com/rvm/ubuntu_rvm](https://github.com/rvm/ubuntu_rvm)
+
+If you need a different (newer) version of RVM, after installing base version of RVM check the [Upgrading](/rvm/upgrading) section.
+
+### Any other system
 
 Install RVM (development version):
 
@@ -20,7 +32,7 @@ Install RVM stable with ruby:
 
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
-Additionally with rails (poor man's [railsinstaller](http://railsinstaller.org)):
+Additionally with rails (poor man's [railsinstaller](http://railsinstaller.org/en)):
 
     \curl -sSL https://get.rvm.io | bash -s stable --rails
 
@@ -60,7 +72,6 @@ rvm_ignore_dotfiles=yes, or opt out permanently by setting this in your rvmrc.
 ### You can also:
 
 - read the [installation documentation](#explained) below.
-- for Windows use this [tutorial](http://blog.developwithpassion.com/2012/03/30/installing-rvm-with-cygwin-on-windows/).
 - watch the most accurate (but not official) [rvm screencast](https://www.youtube.com/watch?v=cQVb7fHFjSM).
 - read the most accurate (but not official) [rvm cheat sheet](http://cheat.errtheblog.com/s/rvm).
 - starting with Rails? watch the [RailsCasts.com on Getting Started with Rails](http://railscasts.com/episodes/310-getting-started-with-rails).
@@ -307,13 +318,27 @@ further links for getting started.
 
 ## Troubleshooting Your Install
 
+- When you run
+
+        curl -sSL https://get.rvm.io | bash -s stable
+
+    and got the notice
+
+        curl: (60) SSL certificate problem: unable to get local issuer certificate
+        More details here: http://curl.haxx.se/docs/sslcerts.html
+
+    `ca-certificates` need to be installed:
+
+        apt-get install ca-certificates
+
+
 - If you open a new shell and running:
 
         type rvm | head -1
 
     does **not** show `rvm is a function`, RVM isn't being sourced correctly.
 
-- Ensure that RVM is sourced after any path settings as RVM and manipulates the path.
+- Ensure that RVM is sourced after any path settings as RVM manipulates the path.
   If you don't do this, RVM may not work as expected.
 
 - If you are using GNOME on Red Hat, CentOS or Fedora, ensure that the
